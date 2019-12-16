@@ -1,4 +1,4 @@
-# Importacao das libs
+# Libs import
 import time
 import os
 
@@ -48,14 +48,14 @@ def sendMessage(message):
 	sendButton.click()
 
 def train(message):
-	response = 'Como respondo isso? Me ensina por favor? Utilize ; "' + str(mensagem) + '"'
+	response = 'How should I answer this? Please, teach me! Use ; "' + str(message) + '"'
 	sendMessage(response)
 	new = []
 	try:
 		while True:
 			last = getTalk()
 			if last == "!":
-				sendMessage("Você desativou meu aprendizado.")
+				sendMessage("You've disabled my learning.")
 				break
 			elif last.replace(';', '') != '' and last != message and last[0] == ';':
 				aux = last
@@ -64,14 +64,14 @@ def train(message):
 				new.append(message.lower().strip())
 				new.append(last.replace(';', '').lower().strip())
 				trainerer.train(novo)
-				sendMessage("Pronto, aprendi! Obrigada...")
+				sendMessage("Ok, I got it! Thanks...")
 				break
 	except:
 		pass
 
 # WIKIPEDIA
 import wikipedia
-wikipedia.set_lang('pt')
+wikipedia.set_lang('en')
 
 def wiki():
 	try:
@@ -79,4 +79,4 @@ def wiki():
 		message = '{}'.format(wikipedia.summary(search))
 		sendMessage(message)
 	except:
-		sendMessage("Nada encontrado para {} na Wikipedia Brasil.".format(search))
+		sendMessage("No results for {} were found in Wikipedia.".format(search))
